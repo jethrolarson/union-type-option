@@ -42,8 +42,8 @@ test('is Chain', (t) => {
 })
 
 test('is Container', (t)=> {
-    t.equal(extract(of(None(), 1)), 1)
-    t.equal(extract(of(Some(2), 1)), 1)
+    t.equal(extract(of(1, None())), 1)
+    t.equal(extract(of(1, Some(2))), 1)
     t.end()
 })
 

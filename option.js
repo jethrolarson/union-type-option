@@ -20,11 +20,11 @@ Option.extract = Option.case({
   , None: _ => null
 })
 
-//:: Option _ -> a -> Option a
+//:: a -> Option _ -> Option a
 Option.of = curry((a, b) => Option.case({
-    Some: _ => Some(b)
-  , None: _ => Some(b)
-}, a))
+    Some: _ => Some(a)
+  , None: _ => Some(a)
+}, b))
 
 //:: (a -> Option b) -> Option a -> Option b
 Option.chain = f => Option.case({
