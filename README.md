@@ -19,6 +19,24 @@ Documentation
 Like [Ramda](https://github.com/ramda/ramda), the functions in this lib take the Option
 instance as the final argument.
 
+This library is written in node-supported es2015 (4.0+) so if you're running in an old environment you may need to transpile to es5.
+
+```js
+var Opt = require('union-type-option')
+```
+
+#### Some
+Create an instance of Option with a non-null value.
+```js
+Opt.Some(1) \\ Some(1)
+```
+
+#### None
+Create an instance of Option with a null value.
+```js
+Opt.None() \\ None()
+```
+
 #### map
 Run a function on a value in an Option and return new Option with the result.
 ```js
