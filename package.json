@@ -7,8 +7,31 @@
   "scripts": {
     "test": "tape test/**/*.js | faucet"
   },
-  "author": "jethrolarson",
+  "author": "Jethro Larson",
+  "description": "Option / Maybe implementation for union-type",
   "license": "MIT",
+  "readme": "README.md",
+  "bugs": {
+    "url": "https://github.com/jethrolarson/union-type-option/issues"
+  },
+  "maintainers": [
+    {
+      "name": "jethrolarson",
+      "email": "jethrolarson@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jethrolarson/union-type-option.git"
+  },
+  "homepage": "https://github.com/jethrolarson/union-type-optio#readme",
+  "keywords": [
+    "adt",
+    "type",
+    "union",
+    "maybe",
+    "option"
+  ],
   "dependencies": {
     "union-type": "^0.2.x",
     "ramda": "^0.19.x"
