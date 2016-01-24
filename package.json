@@ -10,7 +10,7 @@
   "author": "Jethro Larson",
   "description": "Option / Maybe implementation for union-type",
   "license": "MIT",
-  "readme": "README.md",
+  "readme": "https://github.com/jethrolarson/union-type-optio#readme",
   "bugs": {
     "url": "https://github.com/jethrolarson/union-type-option/issues"
   },
