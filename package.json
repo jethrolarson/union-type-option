@@ -1,19 +1,22 @@
 {
+  "_nodeVersion": "5.1.0",
   "name": "union-type-option",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Option/Maybe monad using union-type",
   "main": "option.js",
   "scripts": {
-    "test": "npm test"
+    "test": "tape test/**/*.js | faucet"
   },
   "author": "jethrolarson",
   "license": "MIT",
   "dependencies": {
-    "union-type": "^0.2.0"
+    "union-type": "^0.2.x",
+    "ramda": "^0.19.x"
   },
   "devDependencies": {
-    "babel-register": "^6.4.3",
-    "tape": "^4.4.0",
+    "tape": "^4.4.x",
+    "tape-catch": "^1.0.x",
     "faucet": "0.0.1"
-  }
+  },
+  "engine": "node >= 4.0.0"
 }

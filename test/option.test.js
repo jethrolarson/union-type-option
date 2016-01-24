@@ -1,6 +1,14 @@
 var test = require('tape-catch')
-var Option = require('../app/Option.js')
-var {map, chain, extract, of, Some, None, ap, reduce} = Option
+var Opt = require('../option.js')
+var map = Opt.map;
+var chain = Opt.chain;
+var extract = Opt.extract;
+var of = Opt.of;
+var Some = Opt.Some;
+var None = Opt.None;
+var ap = Opt.ap;
+var reduce = Opt.reduce;
+var extend = Opt.extend;
 
 var B = (f, g) => x => f(g(x))
 var inc = a => a + 1
@@ -49,5 +57,10 @@ test('is Applicative', (t) => {
 test('is Foldable', (t) => {
   t.equal(reduce(add, 1, Some(2)), 3)
   t.equal(reduce(add, 1, None()), 1)
+  t.end()
+})
+
+test('is Extend', (t) => {
+  t.equal(extract(extend(map(inc), Some(1))), 2)
   t.end()
 })
