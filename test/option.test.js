@@ -34,7 +34,9 @@ test('can Extract', (t) => {
 
 test('is Setoid', (t) => {
   t.ok(equals(Some(1), Some(1)))
-  t.ok(equals(none, none))
+  t.ok(equals(none,none))
+  t.ok(equals(none, None()))
+  t.ok(equals(None(), None()))
   t.notOk(equals(Some(2), Some(1)))
   t.notOk(equals(Some({}), Some({})))
   t.notOk(equals(none, Some(1)))
