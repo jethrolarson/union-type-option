@@ -21,10 +21,10 @@ Option.extract = Option.case({
 })
 
 //:: Option _ -> a -> Option a
-Option.of = (a, b) => Option.case({
+Option.of = curry((a, b) => Option.case({
     Some: _ => Some(b)
   , None: _ => Some(b)
-}, a)
+}, a))
 
 //:: (a -> Option b) -> Option a -> Option b
 Option.chain = f => Option.case({
@@ -36,21 +36,21 @@ Option.chain = f => Option.case({
 })
 
 //:: Option (a -> b) -> Option a -> Option b
-Option.ap = (a, b) => Option.case({
+Option.ap = curry((a, b) => Option.case({
     Some: f => b.name === "Some" ? Some(f(b[0])) : none
   , None: _ => none
-}, a)
+}, a))
 
 //:: (b -> a -> b) -> b -> Option a -> b
-Option.reduce = (f, b, a) => Option.case({
+Option.reduce = curry((f, b, a) => Option.case({
     Some: v => f(b, v)
   , None: _ => b
-}, a)
+}, a))
 
 //:: (Option a -> b) -> Option a -> b
-Option.extend = (f, a) => Option.case({
+Option.extend = curry((f, a) => Option.case({
     Some: _ => f(a)
   , None: _ => none
-}, a)
+}, a))
 
 module.exports = Option

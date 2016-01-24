@@ -59,8 +59,3 @@ Turn an option into something else by combining its value with a seed and a redu
 
 #### extend
 Run an extracting function on an Option.
-
-
-
-Examples
---------
