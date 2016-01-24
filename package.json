@@ -1,7 +1,7 @@
 {
   "_nodeVersion": "5.1.0",
   "name": "union-type-option",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Option / Maybe implementation for union-type",
   "main": "option.js",
   "scripts": {
