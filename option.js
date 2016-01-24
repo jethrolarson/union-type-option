@@ -2,32 +2,38 @@ var Type = require('union-type')
 var curry = require('ramda').curry
 var T = () => true
 
-var Option = Type({None: [], Some: [T]})
-var Some = Option.Some
-var None = Option.None
+var Opt = Type({None: [], Some: [T]})
+var Some = Opt.Some
+var None = Opt.None
 
 var none = None()
+Opt.none = none
+Opt.equals = curry((a, b) => Opt.case({
+    Some: v => b.name === 'Some' && v === Opt.extract(b)
+  , None: _ => b.name === 'None'
+}, a))
 
-//:: (a -> b) -> Option a -> Option b
-Option.map = f => Option.case({
+
+//:: (a -> b) -> Opt a -> Opt b
+Opt.map = curry((f, a) => Opt.case({
     Some: v => Some(f(v))
   , None: _ => none
-})
+}, a))
 
-//:: Option a -> a
-Option.extract = Option.case({
+//:: Opt a -> a
+Opt.extract = Opt.case({
     Some: v => v
   , None: _ => null
 })
 
-//:: a -> Option _ -> Option a
-Option.of = curry((a, b) => Option.case({
+//:: a -> Opt _ -> Opt a
+Opt.of = curry((a, b) => Opt.case({
     Some: _ => Some(a)
   , None: _ => Some(a)
 }, b))
 
-//:: (a -> Option b) -> Option a -> Option b
-Option.chain = f => Option.case({
+//:: (a -> Opt b) -> Opt a -> Opt b
+Opt.chain = f => Opt.case({
     Some: v => {
       var b = f(v);
       return b.name === "Some" ? b : none
@@ -35,22 +41,22 @@ Option.chain = f => Option.case({
   , None: _ => none
 })
 
-//:: Option (a -> b) -> Option a -> Option b
-Option.ap = curry((a, b) => Option.case({
-    Some: f => b.name === "Some" ? Some(f(b[0])) : none
+//:: Opt a -> Opt (a -> b) -> Opt b
+Opt.ap = curry((a, b) => Opt.case({
+    Some: v => b.name === "Some" ? Some(Opt.extract(b)(v)) : none
   , None: _ => none
 }, a))
 
-//:: (b -> a -> b) -> b -> Option a -> b
-Option.reduce = curry((f, b, a) => Option.case({
+//:: (b -> a -> b) -> b -> Opt a -> b
+Opt.reduce = curry((f, b, a) => Opt.case({
     Some: v => f(b, v)
   , None: _ => b
 }, a))
 
-//:: (Option a -> b) -> Option a -> b
-Option.extend = curry((f, a) => Option.case({
-    Some: _ => f(a)
+//:: (Opt a -> b) -> Opt a -> b
+Opt.extend = curry((f, a) => Opt.case({
+    Some: _ => Some(f(a))
   , None: _ => none
 }, a))
 
-module.exports = Option
+module.exports = Opt
