@@ -35,8 +35,8 @@ Opt.extract(Opt.None()) // null
 #### of
 Put a value in an option. Mostly useful for higher level operations.
 ```js
-of(1, Opt.None()) // Some(1)
-of(1, Opt.Some(999)) // Some(1)
+Opt.of(1, Opt.None()) // Some(1)
+Opt.of(1, Opt.Some(999)) // Some(1)
 ```
 
 #### chain
