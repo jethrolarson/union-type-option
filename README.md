@@ -16,7 +16,7 @@ Option / Maybe implementation for [union-type](https://github.com/paldepind/unio
 
 Documentation
 -------------
-Like [Ramda](http://ramda.com), the functions in this lib take the Option
+Like [Ramda](https://github.com/ramda/ramda), the functions in this lib take the Option
 instance as the final argument.
 
 #### map
