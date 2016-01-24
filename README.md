@@ -22,36 +22,36 @@ instance as the final argument.
 #### map
 Run a function on a value in an Option and return new Option with the result.
 ```js
-map(a => a + 3, Some(1)) // Some(4)
+Opt.map(a => a + 3, Opt.Some(1)) // Some(4)
 ```
 
 #### extract
 Get the value out of an option. May be null!
 ```js
-  extract(Some(1)) // 1
-  extract(None()) // null
+  Opt.extract(Opt.Some(1)) // 1
+  Opt.extract(Opt.None()) // null
 ```
 
 #### of
 Put a value in an option. Mostly useful for higher level operations.
 ```js
-of(None(), 1) // Some(1)
-of(Some(999), 1) // Some(1)
+of(1, Opt.None()) // Some(1)
+of(1, Opt.Some(999)) // Some(1)
 ```
 
 #### chain
 Run a function that returns an Option on the value in another option.
 ```js
-  var validLength = str => str.length < 8 ? None() : Some(str)
-  var validHasCapitals = str => (/[A-Z]/).test(str) ? Some(str) : None()
-  var validateUsername = username => chain(validHasCapitals, validLength(username))
+  var validLength = str => str.length < 8 ? Opt.None() : Opt.Some(str)
+  var validHasCapitals = str => (/[A-Z]/).test(str) ? Opt.Some(str) : Opt.None()
+  var validateUsername = username => Opt.chain(validHasCapitals, validLength(username))
 ```
 
 #### ap
 Run a function inside an Option on the value in another option
 
 ```js
-  ap(Some(a => a * 2), Some(2)) // Some(4)
+  Opt.ap(Opt.Some(a => a * 2), Opt.Some(2)) // Some(4)
 ```
 
 #### reduce
