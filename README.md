@@ -18,7 +18,7 @@ Option / Maybe implementation for [union-type](https://github.com/paldepind/unio
 Documentation
 -------------
 Like [Ramda](https://github.com/ramda/ramda), the functions in this lib take
-the `Option` instance as the final argument. All functions with more than one
+the `Opt` instance as the final argument. All functions with more than one
 argument are auto-curried using ramda.
 
 This library is written in node-supported es2015 (4.0+) so if you're running in
@@ -26,68 +26,77 @@ an old environment you may need to transpile to es5.
 
 ```js
 var Opt = require('union-type-option')
+var Some = Opt.Some
+var None = Opt.None
 ```
 
 #### Some()
-Create an instance of `Option` with a non-null value.
+Create an instance of `Opt` with a non-null value.
 ```js
-Opt.Some(1) \\ Some(1)
+Some(1) // Some(1)
 ```
 
 #### None()
-Create an instance of `Option` with a null value.
+Create an instance of `Opt` with a null value.
 ```js
-Opt.None() \\ None()
+None() // None()
 ```
 
 #### none
-Alias to get an instance of None()
+Alias to get the instance of None()
 ```js
-Opt.none \\ None()
+Opt.none // None()
 ```
 
-#### equals()
-Compare the contained value of one `Option` against another using `===`.
+#### equals :: Opt a -> Opt b -> Boolean
+Compare the contained value of one `Opt` against another using `===`.
 
 ```js
 Opt.equals(Some(1), Some(1)) //true
 Opt.equals(Some({}), Some({})) //false
-Opt.equals(None(), None({})) //true
+Opt.equals(None(), None()) //true
 ```
 
-#### map()
-Run a function on a value in an `Option` and return new Option with the result.
+#### map :: (a -> b) -> Opt a -> Opt b
+Run a function on a value in an `Opt` and return new Opt with the result.
 ```js
-Opt.map(a => a + 3, Opt.Some(1)) // Some(4)
+Opt.map(a => a + 3, Some(1)) // Some(4)
 ```
 
-#### extract()
-Get the value out of an `Option`. May be null!
+#### filter :: (a -> Boolean) -> Opt a -> Opt a
+Run a predicate on a value in `Opt`, if true the `Some()` is returned, else `None()`
 ```js
-Opt.extract(Opt.Some(1)) // 1
-Opt.extract(Opt.None()) // null
+Opt.filter(a => a > 3, Some(2)) // None()
+Opt.filter(a => a > 3, Some(4)) // Some(4)
 ```
 
-#### of()
-Put a value in an `Option`. Mostly useful for higher level operations.
+#### extract :: Opt a -> a
+Get the value out of an `Opt`. May be null!
 ```js
-Opt.of(1, Opt.None()) // Some(1)
-Opt.of(1, Opt.Some(999)) // Some(1)
+Opt.extract(Some(1)) // 1
+Opt.extract(None()) // null
 ```
 
-#### chain()
-Run a function that returns an Option on the value in another `Option`.
+#### of :: a -> Opt b -> a
+Put a value in an `Opt`. Mostly useful for higher level operations.
 ```js
-var validLength = str => str.length < 8 ? Opt.None() : Opt.Some(str)
-var validHasCapitals = str => (/[A-Z]/).test(str) ? Opt.Some(str) : Opt.None()
+Opt.of(1, None()) // Some(1)
+Opt.of(1, Some(999)) // Some(1)
+```
+
+#### chain :: (a -> Opt b) -> Opt a -> Opt b
+Run a function that returns an `Opt` on the value in another `Opt`.
+```js
+var validLength = str => str.length < 8 ? None() : Some(str)
+var validHasCapitals = str => (/[A-Z]/).test(str) ? Some(str) : None()
 var validateUsername = username => Opt.chain(validHasCapitals, validLength(username))
 ```
 
-#### ap()
-Run a function inside an `Option` on the value in another `Option`
+#### ap :: Opt a -> Opt (a -> b) -> Opt b
+Run a function inside an `Opt` on the value in another `Opt`
 
 ```js
-Opt.ap(Opt.some(2), Opt.Some(a => a * 2)) // Some(4)
+Opt.ap(Opt.some(2), Some(a => a * 2)) // Some(4)
 ```
 
 #### reduce()
@@ -98,8 +107,8 @@ Opt.reduce((a, b) => a + b, 1, Some(2)) // Some(3)
 ```
 
 #### extend()
-Run a function on a `Option` and wrap result in another `Option`.
+Run a function on a `Opt` and wrap result in another `Opt`.
 
 ```js
-Opt.extend(map(a => a + 1), Some(1)) // Some(Some(2))
+Opt.extend(Opt.map(a => a + 1), Some(1)) // Some(Some(2))
 ```

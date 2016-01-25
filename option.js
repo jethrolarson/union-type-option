@@ -59,4 +59,10 @@ Opt.extend = curry((f, a) => Opt.case({
   , None: _ => none
 }, a))
 
+//:: (a -> Boolean) -> Opt a -> Opt a
+Opt.filter = curry((f, a) => Opt.case({
+    Some: v => f(v) ? a : none
+  , None: _ => none
+}, a))
+
 module.exports = Opt

@@ -128,3 +128,19 @@ test('is Extend', (t) => {
 
   t.end()
 })
+
+test('is Filterable', (t) => {
+  eq(t
+    , Opt.filter(a => a > 3, Some(2))
+    , None()
+  )
+  eq(t
+    , Opt.filter(a => a > 3, Some(4))
+    , Some(4)
+  )
+  eq(t
+    , Opt.filter(a => a > 3, None())
+    , none
+  )
+  t.end()
+})
