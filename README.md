@@ -1,7 +1,7 @@
 union-type-option
 =================
 
-Option / Maybe implementation for [union-type](https://github.com/paldepind/union-type)
+Option / Maybe implementation for [union-type](https://github.com/paldepind/union-type). See also [union-type-option](https://github.com/jethrolarson/union-type-option)
 
 
 ### Implemented interfaces:
@@ -96,7 +96,7 @@ var validateUsername = username => Opt.chain(validHasCapitals, validLength(usern
 Run a function inside an `Opt` on the value in another `Opt`
 
 ```js
-Opt.ap(Opt.some(2), Some(a => a * 2)) // Some(4)
+Opt.ap(Some(2), Some(a => a * 2)) // Some(4)
 ```
 
 #### reduce()
