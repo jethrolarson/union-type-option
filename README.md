@@ -99,7 +99,7 @@ Run a function inside an `Opt` on the value in another `Opt`
 Opt.ap(Some(2), Some(a => a * 2)) // Some(4)
 ```
 
-#### reduce `:: (b -> a -> b) -> b -> Opt a`
+#### reduce `:: (b -> a -> b) -> b -> Opt a -> b`
 Turn an option into something else by combining its value with a seed and a reducing function.
 
 ```js
