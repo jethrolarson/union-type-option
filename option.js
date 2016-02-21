@@ -53,7 +53,7 @@ Opt.reduce = curry((f, b, a) => Opt.case({
   , None: _ => b
 }, a))
 
-//:: (Opt a -> b) -> Opt a -> b
+//:: Opt a => (a -> b) -> a -> Opt b
 Opt.extend = curry((f, a) => Opt.case({
     Some: _ => Some(f(a))
   , None: _ => none
