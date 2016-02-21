@@ -1,7 +1,7 @@
 union-type-option
 =================
 
-Option / Maybe implementation for [union-type](https://github.com/paldepind/union-type). See also [union-type-option](https://github.com/jethrolarson/union-type-option)
+Option / Maybe implementation for [union-type](https://github.com/paldepind/union-type). See also [union-type-either](https://github.com/jethrolarson/union-type-either).
 
 
 ### Implemented interfaces:
