@@ -32,7 +32,7 @@
   ],
   "readmeFilename": "README.md",
   "dependencies": {
-    "union-type": "^0.2.x",
+    "union-type": "^0.3.x",
     "ramda": "^0.19.x"
   },
   "devDependencies": {
